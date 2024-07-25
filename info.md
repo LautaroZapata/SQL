@@ -203,11 +203,74 @@ SELECT nombre,apellido,edad FROM users
 ```
 ---
 
+
+### DELETE
+
+Eliminar todos los registros de la tabla usuarios.
+
+```sql
+DELETE FROM usuarios
+```
+---
+
 ### IDENTIFICADORES
 
+Tenemos 2 tipos de identificadores.
+
+Tenemos que crear un nuevo **CAMPO** con el valor de id y establecerlo como AI (AUTO INCREMENT), a su vez automaticamente se selecciona PK (PRIMARY KEY).
+
+Con esto podemos hacer que cada valor que registremos sea unico y por mas que tenga el mismo nombre o apellido se va a diferenciar por su ID.
+
+---
+
+**Para separar las consultas debemos hacerlo con punto y coma (;)**
+
+
+---
+
+### Tipos de id
+
+**Llaves Foraneas**
+
+FK
+
+Las Llaves Foraneas son aquellas que hacen referencia a una clave primaria de otra tabla. 
+
+Por ejemplo si tenemos un **ID USUARIO** en una tabla de usuarios, esa clave va a ser primaria porque es unica.
+
+Pero si tenemos otra tabla de turnos medicos y el medico tiene que poner el ID del usuario que atendió pasa a ser una Clave Foranea ya que la Clave Primaria seria el turno registrado
 
 
 
+**Llaves Primarias**
+
+Ejemplo ID UNICO (PK) Primary Key.
+
+---
+
+*Cuando vamos a crear varias tablas y algunas entidades se van a relacionar, es conveniente asignar el mismo valor en las tablas en aquella propiedad que vamos a usar*
+
+Por ejemplo si vamos a usar un id_usuario, ponemos el mismo nombre en todas las tablas para que sea mas legible.
+
+*Un caso de mala practica seria tener id_usuario en una tabla y en la otra tabla tener id_paciente. En este caso no seria tan legible y facilmente nos podemos confundir.*
+
+---
+
+### Diagrama para RELACIONAR TABLAS
+
+*Las tablas se relacionan por las FK (Llaves Foraneas)*
+
+---
+
+**Northwind ER Diagram**
+
+![](northwind.png)
+
+Podemos ver que las tablas estan conectadas por FK(Llaves Foraneas)
+
+---
+
+### Comulnas y Alias (AS y ORDER BY)
 
 
 
