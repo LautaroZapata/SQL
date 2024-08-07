@@ -273,5 +273,163 @@ Podemos ver que las tablas estan conectadas por FK(Llaves Foraneas)
 ### Comulnas y Alias (AS y ORDER BY)
 
 
+**AS**
+
+Sirve para cambiar temporalmente el nombre a una columna.
+
+Se usa principalmente para darle un nombre mas descriptivo a la tabla.
+
+---
+**ORDER BY**
+
+Nos sirve para ordenar de forma ascendente los valores de la tabla que le pasemos.
+
+Por defecto utiliza ASC (ascendiente) pero es buena practica ponerlo en la consulta.
+
+``` sql
+ORDER BY price ASC
+```
+
+Tambien podemos usar DESC para ordenar de forma descendiente.
 
 
+Los datos NULL por defecto se muestran al inicio cuando ordenamos las tablas, para evitar esto podemos utilizar la siguiente consulta:
+
+```sql
+SELECT * FROM Products
+ORDER BY ProductName ASC NULLS LAST
+```
+
+Con la sentencia NULL LAST indicamos que nos muestre los NULLS al final de la tabla.
+
+---
+
+**Cómo ELIMINAR datos duplicados?**
+
+La cláusula DISTINCT nos devuelve una tabla con valores únicos por lo tanto no nos devuelve datos repetidos.
+
+```sql
+SELECT DISTINCT ProductName FROM Products
+```
+
+---
+
+### Cláusula WHERE (condición)
+
+Funciona para saber por ejemplo que ID esta asociado a un NOMBRE DE PRODUCTO.
+Por ejemplo:
+
+```sql
+SELECT ProductName FROM Products
+WHERE ProductID = 14
+```
+
+Esta consulta pide que devuelva una nueva tabla con los NOMBRES DE PRODUCTOS de la tabla PRODUCTS
+pero solamente la que tenga el PRODUCT ID 14.
+
+Funciona como un IF.
+
+Tambien podemos pedir todo el registro completo y no solo el PRODUCTNAME
+
+```sql
+SELECT * FROM Products
+WHERE ProductID = 14
+```
+
+Nos devuelve todo el registro de ese producto.
+
+De esta forma tambien podemos buscar por nombre y no solo por ID
+
+```sql
+SELECT * FROM Products
+WHERE ProductName = "Tofu"
+```
+
+Si necesitamos saber todos los productos inferiores a determinado precio podemos hacerlo tambien con la siguiente consulta.
+
+```sql
+SELECT * FROM Products
+WHERE Price <= 40
+```
+
+Esto nos devuelve todos los productos con precio menor o igual a 40.
+
+---
+
+**COMO ELIMINAR UN REGISTRO?**
+
+```sql
+DELETE FROM turnos_medicos
+WHERE id_turno = 1
+```
+
+Con esta consulta eliminamos el TURNO MEDICO con el ID 1 si es que existe.
+
+---
+
+**COMO MODIFICAR UN REGISTRO**
+
+```sql
+UPDATE turnos_medicos SET horario = "08:30"
+WHERE id_turno = 1
+```
+
+Con esta consuta modificamos la hora del turno medico especifico que queremos cambiar, si no lo especificamos con el WHERE se cambian todos los horarios.
+
+En la CLÁUSULA SET podemos cambiar mas de un valor separandolo con coma.
+
+```sql
+UPDATE turnos_medicos 
+SET horario = "10:30", motivo = "Dolor de muela" WHERE id_turno = 1
+```
+---
+
+### AND, OR Y NOT
+
+**Operadores Logicos**
+
+*AND*
+
+```sql
+SELECT * FROM Customers
+WHERE CustomerID >= 50 AND CustomerID < 55
+```
+
+Esta consulta nos devuelve todos los ID de CUSTOMERS que esten entre 50 y 55.
+
+*OR*
+
+Nos sirve por si necesitamos tener dos condiciones y elegimos entre una o la otra.
+
+```sql
+SELECT * FROM Employees
+WHERE FirstName = "Nancy" OR Firstname = "Anne"
+```
+
+Esta consulta nos devuelve a las dos empleadas ya que se cumple la primera condicion pero tenemos las dos a disposicion.
+
+En una misma consulta podemos utilizar el OR y el AND.
+
+---
+
+### CLÁUSULA NOT
+
+Nos sirve para indicar que nos devuelva todos los valores menos el que le estamos indicando en la consulta.
+
+```sql
+SELECT * FROM Products
+WHERE NOT Price > 40
+```
+
+Nos devuelve todos los productos que NO tengan precio mas de 40.
+
+Lo que hace el NOT resumidamente es negar la condicion que indicamos.
+
+Podemos hacer una consulta que nos devuelva todos los valores menos uno.
+
+```sql
+SELECT * FROM Customers
+WHERE NOT Country = "USA"
+```
+
+Nos devuelve todos los paises de esa tabla menos USA.
